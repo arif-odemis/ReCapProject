@@ -6,24 +6,27 @@ namespace Business.Constants
 {
 	public static class Messages
 	{
-		public static string CarAdded = "Car added .";
-		public static string CarNameInvalid = "Car name is invalid .";
-		public static string CarNotFound = "Car not found.";
-		public static string CarDeleted = "Car deleted .";
-		public static string CarUpdated = "Car updated .";
-		public static string MaintenanceTime = "Maintenance time ! Thanks for waiting .";
-		public static string CarsListed = "Cars are listed .";
 
-		public static string BrandAdded = "Brand added .";
-		public static string BrandUpdated = "Brand updated .";
-		public static string BrandDeleted = "Brand deleted .";
-		public static string BrandNotFound = "Brand not found.";
-		public static string BrandsListed = "Brands are listed .";
+		public static string CarAdded = "Araç Eklendi";
 
-		public static string ColorAdded = "Color added .";
-		public static string ColorUpdated = "Color updated .";
-		public static string ColorDeleted = "Color deleted .";
-		public static string ColorNotFound = "Color not found.";
-		public static string ColorsListed = "Colors are listed .";
+		public static string CarDeleted = "Araç Silindi";
+
+		public static string CarUpdated = "Araç Güncellendi";
+
+		public static string CarNameInvalid = "Araç ismi geçersiz";
+
+		public static string MaintenanceTime = "Sistem Bakımda";
+
+		public static string CarsListed = "Araçlar Listelendi";
+		public static string BrandAdded = "Marka Eklendi";
+		public static string BrandNotFound = "Marka Bulunamadı";
+		public static string BrandDeleted = "Marka Silindi";
+		public static string BrandUpdated = "Marka Eklendi";
+		public static string ColorAdded = "Renk Eklendi";
+		public static string ColorNotFound = "Renk Bulunamadı";
+		public static string ColorDeleted = "Renk Silindi";
+		public static string UserNotFound = "Kullanıcı Bulunamadı";
+		
+
 	}
 }

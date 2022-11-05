@@ -6,6 +6,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -52,9 +53,11 @@ namespace Business.Concrete
 			return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
 		}
 
-		public IDataResult<List<Brand>> GetCarsByBrandId(int id)
+	
+
+		public IDataResult<Brand> GetByBrandId(Expression<Func<Brand, bool>> filter)
 		{
-			return new SuccessDataResult<List<Brand>>(_brandDal.GetAll().Where(b => b.BrandId == id).ToList());
+			throw new NotImplementedException();
 		}
 	}
 }

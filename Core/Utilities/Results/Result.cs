@@ -15,10 +15,10 @@ namespace Core.Utilities.Results
 		{
 			Success = success;
 		}
-		public bool success { get; }
 
-		public string message { get; }
 		public bool Success { get; }
 		public string Message { get; }
+
+		
 	}
 }
