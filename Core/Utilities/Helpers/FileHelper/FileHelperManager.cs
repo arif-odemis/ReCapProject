@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Utilities.Results;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,41 +9,50 @@ namespace Core.Utilities.Helpers.FileHelper
 {
 	public class FileHelperManager : IFileHelper
 	{
-		public string Add(IFormFile formFile, string root)
+
+		static string path = System.IO.Directory.GetCurrentDirectory() + "\\Images\\";
+
+		public IDataResult<String> Add(IFormFile file)
 		{
-			if (formFile != null)
+			if (file.Length > 0)
 			{
-				if (!Directory.Exists(root))
+				
+				var newGuidPath = Guid.NewGuid().ToString() + Path.GetExtension(path + file.FileName);
+				using (FileStream fileStream = System.IO.File.Create(path + newGuidPath))
 				{
-					Directory.CreateDirectory(root);
-				}
-				string imageExtension = Path.GetExtension(formFile.FileName);
-				string imageName = Guid.NewGuid().ToString() + imageExtension;
-				using (FileStream fileStream = File.Create(root + imageName))
-				{
-					formFile.CopyTo(fileStream);
+					file.CopyTo(fileStream);
 					fileStream.Flush();
-					return imageName;
 				}
+				String filePath = path + newGuidPath;
+				return new SuccessDataResult<String>(filePath, "File Added");
 			}
-			return null;
-		}
+			return new ErrorDataResult<String>();
 
-		public void Delete(string filePath)
+		}
+		public IDataResult<String> Update(string oldfilepath, IFormFile newfile)
+		{
+			if (File.Exists(oldfilepath))
+			{
+				var newGuidPath = Guid.NewGuid().ToString() + Path.GetExtension(path + newfile.FileName);
+				using (FileStream fileStream = System.IO.File.Create(path + newGuidPath))
+				{
+					newfile.CopyTo(fileStream);
+					fileStream.Flush();
+				}
+				string newfilePath = path + newGuidPath;
+				return new SuccessDataResult<String>(newfilePath, "File Added");
+			}
+			return new ErrorDataResult<String>("File Doesn't Exists");
+
+		}
+		public IResult Delete(string filePath)
 		{
 			if (File.Exists(filePath))
 			{
 				File.Delete(filePath);
+				return new SuccessResult();
 			}
-		}
-
-		public string Update(IFormFile formFile, string filePath, string root)
-		{
-			if (File.Exists(filePath))
-			{
-				File.Delete(filePath);
-			}
-			return Add(formFile, root);
+			return new ErrorResult();
 		}
 	}
 }

@@ -23,34 +23,42 @@ namespace Business.Concrete
 			_fileHelper = fileHelper;
 		}
 
-		public IResult AddImage(IFormFile formFile, CarImage addImage)
+		public IResult AddImage(IFormFile formFile, CarImage carImage)
 		{
-			BusinessRules.Run(CheckIfImageLimitExceded(addImage.CarId));
-			addImage.ImagePath = _fileHelper.Add(formFile, PathConstans.ImagesRoot);
-			addImage.Date = DateTime.Now;
-			_carImageDal.Add(addImage);
-			return new SuccessResult(Messages.SuccessUploadOfCarImage);
+			var fileUpload = _fileHelper.Add(formFile);
+			if (fileUpload.Success)
+			{
+				carImage.ImagePath = fileUpload.Data;
+				carImage.Date = DateTime.Now;
+				_carImageDal.Add(carImage);
+				return new SuccessResult(Messages.SuccessUploadOfCarImage);
+			}
+			return new ErrorResult("Error");
 		}
 
-		public IResult DeleteImage(CarImage deleteImage)
+		public IResult DeleteImage(CarImage carImage)
 		{
-			_fileHelper.Delete(PathConstans.ImagesRoot + deleteImage.ImagePath);
-			_carImageDal.Delete(deleteImage);
+			var deleteCarImage = _carImageDal.Get(c => c.Id == carImage.Id);
+
+			_fileHelper.Delete(deleteCarImage.ImagePath);
+			_carImageDal.Delete(deleteCarImage);
 			return new SuccessResult(Messages.CarImageDeletedSuccessfully);
 		}
 
-		public IResult UpdateImage(CarImage updateImage, IFormFile formFile)
-		{
-			updateImage.ImagePath = _fileHelper.Update(formFile, PathConstans.ImagesRoot + updateImage.ImagePath, PathConstans.ImagesRoot);
-			updateImage.Date = DateTime.Now;
-			_carImageDal.Update(updateImage);
-			return new SuccessResult(Messages.CarImageUpdatedSuccesfully);
-		}
+		//public IResult UpdateImage(IFormFile formFile, CarImage carImage)
+		//{
+
+		//	//updateImage.ImagePath = _fileHelper.Update(formFile);
+		//	//updateImage.Date = DateTime.Now;
+		//	//_carImageDal.Update(updateImage);
+		//	return new SuccessResult(Messages.CarImageUpdatedSuccesfully);
+		//}
 
 		public IDataResult<List<CarImage>> GetAll()
 		{
-			_carImageDal.GetAll();
-			return new SuccessDataResult<List<CarImage>>();
+			var result = _carImageDal.GetAll();
+		
+			return new SuccessDataResult<List<CarImage>>(result);
 		}
 
 		public IDataResult<List<CarImage>> GetByCarId(int carId)
