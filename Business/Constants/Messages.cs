@@ -26,7 +26,15 @@ namespace Business.Constants
 		public static string ColorNotFound = "Renk Bulunamadı";
 		public static string ColorDeleted = "Renk Silindi";
 		public static string UserNotFound = "Kullanıcı Bulunamadı";
-		
+		public static string CarImageCountExceeded = "Bir aracın en fazla 5 tane resmi olabilir.";
+
+		public static string SuccessUploadOfCarImage = "Resim başarıyla eklendi.";
+
+		public static string CarImageDeletedSuccessfully = "Resim başarıyla silindi";
+
+		public static string CarImageUpdatedSuccesfully = "Resim başarıyla güncellendi.";
+
+
 
 	}
 }
