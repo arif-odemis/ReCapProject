@@ -21,7 +21,7 @@ namespace Business.Concrete
 			_userDal = userDal;
 		}
 
-		[SecuredOperation("user.add,admin")]
+		
 
 		public IResult Add(User user)
 		{

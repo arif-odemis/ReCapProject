@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,7 +19,7 @@ namespace Business.Concrete
 		{
 			_carDal = carDal;
 		}
-
+		[SecuredOperation("car.add,admin")]
 		public IResult Add(Car car)
 		{
 			if (car.Description.Length < 2 || car.DailyPrice < 0)
