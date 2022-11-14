@@ -10,8 +10,8 @@ namespace ConsoleUI
 	{
 		static void Main(string[] args)
 		{
-			CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-			customerManager.Add(new Customer { UserId=6,CompanyName="Emre Tekstil" }); 
+			//CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+			//customerManager.Add(new Customer { UserId=6,CompanyName="Emre Tekstil" }); 
 
 		//	CarManager carManager = new CarManager(new EfCarDal());
 		//	var carDetails=carManager.GetCarDetails();

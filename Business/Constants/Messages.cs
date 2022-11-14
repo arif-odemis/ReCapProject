@@ -33,6 +33,7 @@ namespace Business.Constants
 		public static string CarImageDeletedSuccessfully = "Resim başarıyla silindi";
 
 		public static string CarImageUpdatedSuccesfully = "Resim başarıyla güncellendi.";
+		public static string AuthorizationDenied = "Yetkiniz yok.";
 
 
 
