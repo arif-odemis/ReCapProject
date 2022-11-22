@@ -31,7 +31,7 @@ namespace Business.Concrete
 				carImage.ImagePath = fileUpload.Data;
 				carImage.Date = DateTime.Now;
 				_carImageDal.Add(carImage);
-				return new SuccessResult(Messages.SuccessUploadOfCarImage);
+				return new SuccessResult(Messages.CarImageAdded);
 			}
 			return new ErrorResult("Error");
 		}
@@ -42,7 +42,7 @@ namespace Business.Concrete
 
 			_fileHelper.Delete(deleteCarImage.ImagePath);
 			_carImageDal.Delete(deleteCarImage);
-			return new SuccessResult(Messages.CarImageDeletedSuccessfully);
+			return new SuccessResult(Messages.CarImageDeleted);
 		}
 
 		//public IResult UpdateImage(IFormFile formFile, CarImage carImage)

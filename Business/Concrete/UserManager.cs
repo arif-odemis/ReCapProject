@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
+using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -21,54 +23,46 @@ namespace Business.Concrete
 			_userDal = userDal;
 		}
 
-		
-
+		[ValidationAspect(typeof(UserValidator))]
 		public IResult Add(User user)
 		{
-			ValidationTool.Validate(new UserValidator(), user);
 			_userDal.Add(user);
-			return new SuccessResult();
+			return new SuccessResult(Messages.UserAdded);
 		}
 
 		public IResult Delete(User user)
 		{
 			_userDal.Delete(user);
-			return new SuccessResult();
+			return new SuccessResult(Messages.UserDeleted);
 		}
 
-		
 		public IDataResult<List<User>> GetAll()
 		{
-			return new SuccessDataResult<List<User>>(_userDal.GetAll());
+			return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UsersListed);
 		}
 
-		
-		
-		public IDataResult<User> GetById(int id)
+		public IDataResult<User> GetById(int userId)
 		{
-			return new SuccessDataResult<User>(_userDal.Get(p => p.Id == id));
+			return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId), Messages.TheUserListed);
 		}
 
 		public IDataResult<User> GetByMail(string email)
 		{
-			return new SuccessDataResult<User>(_userDal.Get(p => p.Email == email));
+			return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email), Messages.TheUserListed);
 		}
 
-		public List<OperationClaim> GetClaims(User user)
+		public IDataResult<List<OperationClaim>> GetClaims(User user)
 		{
-			return _userDal.GetClaims(user);
+			return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user), Messages.UserClaimsListed);
 		}
 
-		
+		[ValidationAspect(typeof(UserValidator))]
 		public IResult Update(User user)
 		{
 			_userDal.Update(user);
-			return new SuccessResult();
+			return new SuccessResult(Messages.UserUpdated);
 		}
 
-		IDataResult<List<OperationClaim>> IUserService.GetClaims(User user)
-		{
-			return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
-		}
+
 	}
 }

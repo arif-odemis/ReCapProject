@@ -9,11 +9,34 @@ namespace WebAPI.Controllers
 	[ApiController]
 	public class BrandsController : ControllerBase
 	{
+		
 		IBrandService _brandService;
 
 		public BrandsController(IBrandService brandService)
 		{
 			_brandService = brandService;
+		}
+
+		[HttpPost("add")]
+		public IActionResult Add(Brand brand)
+		{
+			var result = _brandService.Add(brand);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpPost("delete")]
+		public IActionResult Delete(Brand brand)
+		{
+			var result = _brandService.Delete(brand);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
 		}
 
 		[HttpGet("getall")]
@@ -26,21 +49,11 @@ namespace WebAPI.Controllers
 			}
 			return BadRequest(result);
 		}
+
 		[HttpGet("getbyid")]
 		public IActionResult GetById(int id)
 		{
-			var result = _brandService.GetByBrandId(b => b.BrandId == id);
-			if (result.Success)
-			{
-				return Ok(result);
-			}
-			return BadRequest(result);
-		}
-
-		[HttpPost("add")]
-		public IActionResult Add(Brand brand)
-		{
-			var result = _brandService.Add(brand);
+			var result = _brandService.GetById(id);
 			if (result.Success)
 			{
 				return Ok(result);
@@ -59,10 +72,10 @@ namespace WebAPI.Controllers
 			return BadRequest(result);
 		}
 
-		[HttpPost("delete")]
-		public IActionResult Delete(Brand brand)
+		[HttpPost("transactionaloperation")]
+		public IActionResult TransactionalOperation(Brand brand)
 		{
-			var result = _brandService.Delete(brand);
+			var result = _brandService.TransactionalOperation(brand);
 			if (result.Success)
 			{
 				return Ok(result);

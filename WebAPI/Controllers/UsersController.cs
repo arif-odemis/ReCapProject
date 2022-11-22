@@ -17,34 +17,7 @@ namespace WebAPI.Controllers
 			_userService = userService;
 		}
 
-		[HttpGet("GetAll")]
-
-		public IActionResult GetAll()
-		{
-			var result = _userService.GetAll();
-			if (result.Success)
-			{
-				return Ok(result.Data);
-			}
-			return BadRequest(result.Message);
-		}
-
-		
-
-		[HttpPost("Delete")]
-
-		public IActionResult Delete(User user)
-		{
-			var result = _userService.Delete(user);
-			if (result.Success)
-			{
-				return Ok(result);
-			}
-			return BadRequest(result);
-		}
-
-		[HttpPost("Add")]
-
+		[HttpPost("add")]
 		public IActionResult Add(User user)
 		{
 			var result = _userService.Add(user);
@@ -55,8 +28,40 @@ namespace WebAPI.Controllers
 			return BadRequest(result);
 		}
 
-		[HttpPost("Update")]
+		[HttpPost("delete")]
+		public IActionResult Delete(User user)
+		{
+			var result = _userService.Delete(user);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
 
+		[HttpGet("getall")]
+		public IActionResult GetAll()
+		{
+			var result = _userService.GetAll();
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpGet("getbyid")]
+		public IActionResult GetById(int id)
+		{
+			var result = _userService.GetById(id);
+			if (result.Success)
+			{
+				return Ok(result);
+			}
+			return BadRequest(result);
+		}
+
+		[HttpPost("update")]
 		public IActionResult Update(User user)
 		{
 			var result = _userService.Update(user);

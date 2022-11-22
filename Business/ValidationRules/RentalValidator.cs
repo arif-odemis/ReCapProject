@@ -10,7 +10,7 @@ namespace Business.ValidationRules
 	{
 		public RentalValidator()
 		{
-			RuleFor(r => r.Id).NotEmpty();
+			RuleFor(r => r.RentalId).NotEmpty();
 			RuleFor(r => r.CarId).NotEmpty();
 			RuleFor(r => r.RentDate).NotEmpty();
 			RuleFor(r => r.ReturnDate).NotEmpty();
