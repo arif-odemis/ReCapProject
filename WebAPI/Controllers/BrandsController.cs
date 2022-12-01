@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +20,9 @@ namespace WebAPI.Controllers
 		{
 			_brandService = brandService;
 		}
-
+		[SecuredOperation("brand.add,admin")]
+		[ValidationAspect(typeof(BrandValidator))]
+		[CacheRemoveAspect("IBrandService.Get")]
 		[HttpPost("add")]
 		public IActionResult Add(Brand brand)
 		{

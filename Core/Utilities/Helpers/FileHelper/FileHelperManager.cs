@@ -10,7 +10,7 @@ namespace Core.Utilities.Helpers.FileHelper
 	public class FileHelperManager : IFileHelper
 	{
 
-		static string path = System.IO.Directory.GetCurrentDirectory() + "\\Images\\";
+		static string path = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\Images\\";
 
 		public IDataResult<String> Add(IFormFile file)
 		{

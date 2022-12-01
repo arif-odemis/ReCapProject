@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\Images\3209c566-b3e3-4796-9a59-c1e8cffbed03.jpeg" />
+    <Content Remove="wwwroot\Images\729b9b07-e900-482a-b635-6233fe3b5c25.jfif" />
+    <Content Remove="wwwroot\Images\98f36818-7c0c-45d0-906c-95797787b3b1.jpeg" />
+    <Content Remove="wwwroot\Images\afc9ba6d-8b2e-46c2-9bb6-7e2670e8dd8d.jpg" />
+    <Content Remove="wwwroot\Images\c2b0890e-23fe-469c-a61d-ebffe7121293.jpeg" />
+    <Content Remove="wwwroot\Images\d9b4967c-09eb-41dd-b9b2-cb6256c46c0d.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
@@ -15,6 +24,15 @@
 
   <ItemGroup>
     <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\3209c566-b3e3-4796-9a59-c1e8cffbed03.jpeg" />
+    <None Include="wwwroot\Images\729b9b07-e900-482a-b635-6233fe3b5c25.jfif" />
+    <None Include="wwwroot\Images\98f36818-7c0c-45d0-906c-95797787b3b1.jpeg" />
+    <None Include="wwwroot\Images\afc9ba6d-8b2e-46c2-9bb6-7e2670e8dd8d.jpg" />
+    <None Include="wwwroot\Images\c2b0890e-23fe-469c-a61d-ebffe7121293.jpeg" />
+    <None Include="wwwroot\Images\d9b4967c-09eb-41dd-b9b2-cb6256c46c0d.jpeg" />
   </ItemGroup>
 
   <ItemGroup>
