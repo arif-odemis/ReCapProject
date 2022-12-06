@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\Images\3209c566-b3e3-4796-9a59-c1e8cffbed03.jpeg" />
     <None Include="wwwroot\Images\729b9b07-e900-482a-b635-6233fe3b5c25.jfif" />
     <None Include="wwwroot\Images\98f36818-7c0c-45d0-906c-95797787b3b1.jpeg" />

@@ -4,9 +4,19 @@ using System.Text;
 
 namespace Business.Constants
 {
-	public static class PathConstans
+	public  class PathConstans
 	{
-		public static string ImagesRoot = "wwwroot\\Uploads\\Images\\";
-		public static string DefaultImage = "wwwroot\\Uploads\\Images\\DefaultImages";
-	}
+		public static string GetCarImagesRouter()
+		{
+			string ImagesPath = "wwwroot\\Uploads\\Images\\";
+
+			return ImagesPath;
+		}
+
+		public static string GetDefaultImagesRouter()
+		{
+			return GetCarImagesRouter() + @"\DefaultImage.jpg";
+		}
+	
+}
 }
